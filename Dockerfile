@@ -1,10 +1,10 @@
-FROM python:3.8.11-alpine3.14
+FROM python:3.10-slim
 
 WORKDIR /service/app
 ADD ./src/ /service/app/
 COPY requirements.txt /service/app/
 
-RUN apk --no-cache add curl build-base npm
+RUN apt-get update && apt-get install -y curl build-essential npm && rm -rf /var/lib/apt/lists/*
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 

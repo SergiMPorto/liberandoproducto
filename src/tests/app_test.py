@@ -25,6 +25,14 @@ class TestSimpleServer:
     async def read_main_test(self):
         """Tests the main endpoint"""
         response = client.get("/")
-
         assert response.status_code == 200
         assert response.json() == {"msg": "Hello World"}
+
+    @pytest.mark.asyncio
+    async def read_path_test(self):
+     
+        response = client.get("/bye", params={"msg": "ciao"})
+        assert response.status_code == 200
+        assert response.json() == {"message": "Bye, Bye!", "input": "ciao"}
+
+  

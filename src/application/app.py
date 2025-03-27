@@ -25,7 +25,7 @@ class SimpleServer:
 
     async def run_server(self):
         """Starts the server with the config parameters"""
-        self._hypercorn_config.bind = ['0.0.0.0:8081']
+        self._hypercorn_config.bind = ['0.0.0.0:8082']
         self._hypercorn_config.keep_alive_timeout = 90
         await serve(app, self._hypercorn_config)
 
@@ -46,3 +46,10 @@ class SimpleServer:
         # Increment counter used for register the total number of calls in the main endpoint
         MAIN_ENDPOINT_REQUESTS.inc()
         return {"msg": "Hello World"}
+    
+    @app.get("/bye")
+    async def read_path(msg: str):
+        """Implement bye endpoint"""
+        # Increment counter used for register the total number of calls in the webserver
+        REQUESTS.inc()
+        return {"message": "Bye, Bye!", "input": msg}
