@@ -37,12 +37,6 @@ jobs:
           name: Set VERSION env from tag
           command: echo "export VERSION=${CIRCLE_TAG#v}" >> $BASH_ENV #Extraer la version del tag. 
 
-      - run:
-          name: Build and publish Docker image
-          command: |
-            source $BASH_ENV
-            make publish
-
 workflows:
   version: 2
   ci:
