@@ -53,7 +53,12 @@ workflows:
   version: 2
   ci:
     jobs:
-      - test
+      - test:
+          filters:  
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/  # Solo se ejecuta en tags que comienzan con "v"
       - build-and-push:
           requires:
             - test
