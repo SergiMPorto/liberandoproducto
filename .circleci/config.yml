@@ -38,11 +38,6 @@ jobs:
           command: echo "export VERSION=${CIRCLE_TAG#v}" >> $BASH_ENV #Extraer la version del tag. 
 
       - run:
-          name: Docker login to Docker Hub
-          command: echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
-
-
-      - run:
           name: Build and publish Docker image
           command: |
             source $BASH_ENV
