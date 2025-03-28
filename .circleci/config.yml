@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Set VERSION env from tag
-          command: echo "export VERSION=${CIRCLE_TAG#v}" >> $BASH_ENV
+          command: echo "export VERSION=${CIRCLE_TAG#v}" >> $BASH_ENV #Extraer la version del tag. 
 
       - run:
           name: Docker login to GHCR
@@ -61,4 +61,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/  // Solo ejecutar en tags que empiecen por v
+              only: /^v.*/  # Solo se ejecuta en tags que comienzan con "v"
