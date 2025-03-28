@@ -66,4 +66,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/  # Solo se ejecuta en tags que comienzan con "v"
+              only: /^v.*/  # Solo se ejecuta en tags que comienzan con v
