@@ -9,7 +9,7 @@ Una vez lanzada, creamos un nuevo endpoint:
 /bye
 ```
 
-[Insertar imagen del nuevo endpoint]
+![nuevo endpoint](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/metricas%20personalizadas%20para%20el%20nuevo%20endpoint.png)
 
 ---
 
@@ -17,7 +17,7 @@ Una vez lanzada, creamos un nuevo endpoint:
 
 Creamos un test para verificar que el nuevo endpoint devuelve un `status_code` 200 y el `json` esperado.
 
-[Insertar imagen del test unitario]
+![pruebas unitarios nuevo endpoint](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/testunitarionuevoendpoint.png)
 
 ---
 
@@ -116,8 +116,8 @@ workflows:
             tags:
               only: /^v.*/
 ```
-
-[Insertar imagen del pipeline funcionando]
+![creando versiones](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/crearlasversiones.png)
+![CIrcleCi](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/circlecicorrecto.png)
 
 ---
 
@@ -125,7 +125,11 @@ workflows:
 
 Creamos un contador Prometheus para medir cuántas veces se llama al nuevo endpoint `/bye`.
 
-[Insertar imagen con prueba de métricas]
+
+
+![prueba navegador](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/pruebaendpoindnavegador.png)
+![contador de métricas](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/contador%20metricas.png)
+
 
 ---
 
@@ -133,7 +137,7 @@ Creamos un contador Prometheus para medir cuántas veces se llama al nuevo endpo
 
 Desplegamos Prometheus con Helm sobre Minikube y lo configuramos con `kube-prometheus-stack`.
 
-[Insertar imagen del despliegue de Prometheus]
+![ despliegue de Prometheus](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/desplegar%20prometeo.png)
 
 ---
 
@@ -144,7 +148,7 @@ Creamos reglas de alerta para:
 - Peticiones excesivas al endpoint `/bye`
 - Consumo de CPU elevado
 
-[Insertar imagen del archivo PrometheusRule]
+![PrometheusRule](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/prometheusrules.png)
 
 ---
 
@@ -152,7 +156,7 @@ Creamos reglas de alerta para:
 
 Configuramos Alertmanager para que envíe alertas a un canal de Slack. 
 
-[Insertar imagen de configuración de Slack]
+![configuración de Slack](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/configurandoslack.png)
 
 ---
 
@@ -163,7 +167,7 @@ Probamos a generar manualmente alertas:
 - Lanzando múltiples peticiones al endpoint `/bye`  
 - Saturando la CPU con `threading` en Python (no conseguimos superarlo aunque se probó con múltiples hilos y configuraciones)
 
-[Insertar imagen del firing de la alerta del endpoint]
+![firing de la alerta del endpoint](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/alertaactivasa.png)
 
 ---
 
@@ -171,4 +175,4 @@ Probamos a generar manualmente alertas:
 
 Creamos un dashboard en Grafana (importando JSON) para visualizar el número de veces que se ha llamado al endpoint `/bye`.
 
-[Insertar imagen del panel de llamadas en Grafana]
+![panel de llamadas en Grafana](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/grafanabyllamadas.png)
