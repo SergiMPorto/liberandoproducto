@@ -1,0 +1,62 @@
+{
+  "title": "FastAPI - CPU Gauge",
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "gauge",
+      "title": "Uso de CPU / L\u00edmite (FastAPI)",
+      "id": 1,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "your-prometheus-uid"
+      },
+      "targets": [
+        {
+          "expr": "\nsum(rate(container_cpu_usage_seconds_total{namespace=\"fast-api\", pod=~\"my-app.*\"}[2m]))\n/\nsum(kube_pod_container_resource_limits_cpu_cores{namespace=\"fast-api\", pod=~\"my-app.*\"})\n* 100\n",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showThresholdLabels": true,
+        "showThresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}
