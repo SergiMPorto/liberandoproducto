@@ -156,6 +156,7 @@ Creamos reglas de alerta para:
 
 Configuramos Alertmanager para que envíe alertas a un canal de Slack. 
 
+
 ![configuración de Slack](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/configurandoslack.png)
 
 ---
@@ -168,6 +169,7 @@ Probamos a generar manualmente alertas:
 - Saturando la CPU con `threading` en Python (no conseguimos superarlo aunque se probó con múltiples hilos y configuraciones)
 
 ![firing de la alerta del endpoint](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/alertaactivasa.png)
+![alerta en stack](https://github.com/SergiMPorto/liberandoproducto/blob/main/images/alertaenstackdettomanybyeresquest.png)
 
 ---
 
