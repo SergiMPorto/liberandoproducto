@@ -1,0 +1,22 @@
+image:
+  repository: sergimp/fastapi-metrics-app
+  tag: bye-metrics
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 8081
+  metricsPort: 8081
+
+containerPort:
+  app: 8081
+  metrics: 8081
+
+resources:
+  limits:
+    cpu: "4"
+    memory: "1Gi"
+  requests:
+    cpu: "2"
+    memory: "512Mi"
+

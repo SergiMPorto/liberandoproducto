@@ -1,0 +1,33 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: fastapi-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+    role: alert-rules
+spec:
+  groups:
+    - name: fastapi.rules
+      rules:
+        - alert: TooManyByeRequests
+          expr: increase(bye_requests_total[5m]) > 5
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Demasiadas peticiones a /bye"
+            description: "Se han recibido más de 5 peticiones al endpoint /bye en los últimos 5 minutos."
+
+        - alert: HighCPUUsageRequestBased
+          expr: |
+            sum(rate(container_cpu_usage_seconds_total{namespace="fast-api", pod=~"my-app.*", image!=""}[2m])) by (pod)
+            /
+            sum(kube_pod_container_resource_requests{resource="cpu", unit="core", namespace="fast-api", pod=~"my-app.*"}) by (pod)
+            > 0.1
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Uso de CPU alto en {{ $labels.pod }}"
+            description: "El uso de CPU del pod {{ $labels.pod }} ha superado el 90% de su request de CPU en los últimos 2 minutos."

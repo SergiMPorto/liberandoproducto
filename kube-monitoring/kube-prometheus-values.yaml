@@ -1,0 +1,9 @@
+kube-state-metrics:
+  enabled: true
+  selfMonitor:
+    enabled: true
+  prometheus:
+    monitor:
+      enabled: true
+  extraArgs:
+    - --resources=pods,nodes,resourcequotas,limitranges

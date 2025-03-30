@@ -4,7 +4,11 @@ WORKDIR /service/app
 ADD ./src/ /service/app/
 COPY requirements.txt /service/app/
 
-RUN apt-get update && apt-get install -y curl build-essential npm && rm -rf /var/lib/apt/lists/*
+# 🔧 Añadimos stress aquí
+RUN apt-get update && \
+    apt-get install -y curl build-essential npm stress && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
